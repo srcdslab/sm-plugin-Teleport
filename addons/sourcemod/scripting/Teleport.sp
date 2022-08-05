@@ -2,6 +2,7 @@
 
 #include <sourcemod>
 #include <sdktools>
+#include <multicolors>
 
 #pragma newdecls required
 
@@ -10,7 +11,7 @@ public Plugin myinfo =
 	name 		= "Teleport Commands",
 	author		= "Obus",
 	description	= "Adds commands to teleport clients.",
-	version		= "1.3.1",
+	version		= "1.3.2",
 	url			= "https://github.com/CSSZombieEscape/sm-plugins/blob/master/Teleport/"
 }
 
@@ -28,13 +29,13 @@ public Action Command_Bring(int client, int argc)
 {
 	if (!client)
 	{
-		PrintToServer("[SM] Cannot use command from server console.");
+		ReplyToCommand(client, "[SM] Cannot use command from server console.");
 		return Plugin_Handled;
 	}
 
 	if (argc < 1)
 	{
-		PrintToChat(client, "[SM] Usage: sm_bring <name|#userid>");
+		CPrintToChat(client, "{green}[SM] {default}Usage: sm_bring <name|#userid>");
 		return Plugin_Handled;
 	}
 
@@ -61,7 +62,7 @@ public Action Command_Bring(int client, int argc)
 		TeleportEntity(iTargets[i], vecClientPos, NULL_VECTOR, NULL_VECTOR);
 	}
 
-	ShowActivity2(client, "\x01[SM] \x04", "\x01Brought \x04%s\x01", sTargetName);
+	CShowActivity2(client, "{green}[SM] {olive}", "{default}Brought {olive}%s{default}.", sTargetName);
 
 	if (iTargetCount > 1)
 		LogAction(client, -1, "\"%L\" brought \"%s\"", client, sTargetName);
@@ -75,13 +76,13 @@ public Action Command_Goto(int client, int argc)
 {
 	if (!client)
 	{
-		PrintToServer("[SM] Cannot use command from server console.");
+		ReplyToCommand(client, "[SM] Cannot use command from server console.");
 		return Plugin_Handled;
 	}
 
 	if (argc < 1)
 	{
-		PrintToChat(client, "[SM] Usage: sm_goto <name|#userid|@aim>");
+		CPrintToChat(client, "{green}[SM] {default}Usage: sm_goto <name|#userid|@aim>");
 		return Plugin_Handled;
 	}
 
@@ -104,14 +105,13 @@ public Action Command_Goto(int client, int argc)
 
 				if (!TracePlayerAngles(client, vecAimPoint))
 				{
-					PrintToChat(client, "[SM] Couldn't perform trace to your aimpoint.");
+					CPrintToChat(client, "{green}[SM] {default}Couldn't perform trace to your aimpoint.");
 					return Plugin_Handled;
 				}
 
 				TeleportEntity(client, vecAimPoint, NULL_VECTOR, NULL_VECTOR);
 
-				ShowActivity3(client, "\x01[SM] \x04", "\x01Teleported to their aimpoint.");
-				ReplyToCommand(client, "[SM] Teleported you to your aimpoint.");
+				CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported to {olive}their aimpoint{default}.");
 				LogAction(client, -1, "\"%L\" teleported to their aimpoint", client);
 
 				return Plugin_Handled;
@@ -126,14 +126,13 @@ public Action Command_Goto(int client, int argc)
 
 			if (!TracePlayerAngles(client, vecAimPoint))
 			{
-				PrintToChat(client, "[SM] Couldn't perform trace to your aimpoint.");
+				CPrintToChat(client, "{green}[SM] {default}Couldn't perform trace to your aimpoint.");
 				return Plugin_Handled;
 			}
 
 			TeleportEntity(client, vecAimPoint, NULL_VECTOR, NULL_VECTOR);
 
-			ShowActivity3(client, "\x01[SM] \x04", "\x01Teleported to their aimpoint.");
-			ReplyToCommand(client, "[SM] Teleported you to your aimpoint.");
+			CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported to {olive}their aimpoint{default}.");
 			LogAction(client, -1, "\"%L\" teleported to their aimpoint", client);
 
 			return Plugin_Handled;
@@ -149,7 +148,7 @@ public Action Command_Goto(int client, int argc)
 
 	TeleportEntity(client, vecTargetPos, NULL_VECTOR, NULL_VECTOR);
 
-	ShowActivity2(client, "\x01[SM] \x04", "\x01Teleported to \x04%N\x01.", iTarget);
+	CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported to {olive}%N{default}.", iTarget);
 	LogAction(client, iTarget, "\"%L\" teleported to \"%L\"", client, iTarget);
 
 	return Plugin_Handled;
@@ -159,7 +158,7 @@ public Action Command_Send(int client, int argc)
 {
 	if (argc < 2)
 	{
-		PrintToChat(client, "[SM] Usage: sm_send <name|#userid> <name|#userid>");
+		CPrintToChat(client, "{green}[SM] {default}Usage: sm_send <name|#userid> <name|#userid>");
 		return Plugin_Handled;
 	}
 
@@ -192,7 +191,7 @@ public Action Command_Send(int client, int argc)
 
 		if (!TracePlayerAngles(client, vecAimPoint))
 		{
-			PrintToChat(client, "[SM] Couldn't perform trace to your aimpoint.");
+			CPrintToChat(client, "{green}[SM] {default}Couldn't perform trace to your aimpoint.");
 			return Plugin_Handled;
 		}
 
@@ -201,8 +200,7 @@ public Action Command_Send(int client, int argc)
 			TeleportEntity(iTargets[i], vecAimPoint, NULL_VECTOR, NULL_VECTOR);
 		}
 
-		ShowActivity3(client, "\x01[SM] \x04", "\x01Teleported \x04%s\x01 to their aimpoint.", sTargetName);
-		ReplyToCommand(client, "\x01[SM] Teleported \x04%s\x01 to your aimpoint.", sTargetName);
+		CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported {olive}%s{default} to {olive}their aimpoint{default}.", sTargetName);
 
 		if (iTargetCount > 1)
 			LogAction(client, -1, "\"%L\" teleported target \"%s\" to their aimpoint", client, sTargetName);
@@ -224,7 +222,7 @@ public Action Command_Send(int client, int argc)
 		TeleportEntity(iTargets[i], vecTargetPos, NULL_VECTOR, NULL_VECTOR);
 	}
 
-	ShowActivity2(client, "\x01[SM] \x04", "\x01Teleported \x04%s\x01 to \x04%N\x01.", sTargetName, iTarget);
+	CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported {olive}%s{default} to {olive}%N{default}.", sTargetName, iTarget);
 
 	if (iTargetCount > 1)
 		LogAction(client, -1, "\"%L\" teleported target \"%s\" to \"%L\"", client, sTargetName, iTarget);
@@ -238,7 +236,7 @@ public Action Command_TpAim(int client, int argc)
 {
 	if (!client)
 	{
-		PrintToServer("[SM] Cannot use command from server console.");
+		ReplyToCommand(client, "[SM] Cannot use command from server console.");
 		return Plugin_Handled;
 	}
 
@@ -265,8 +263,7 @@ public Action Command_TpAim(int client, int argc)
 		TeleportEntity(iTargets[i], vecAimPoint, NULL_VECTOR, NULL_VECTOR);
 	}
 
-	ShowActivity3(client, "\x01[SM] \x04", "\x01Teleported \x04%s\x01 to their aimpoint.", sTargetName);
-	ReplyToCommand(client, "\x01[SM] Teleported \x04%s\x01 to your aimpoint.", sTargetName);
+	CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported {olive}%s{default} to {olive}their aimpoint{default}.", sTargetName);
 
 	if (iTargetCount > 1)
 		LogAction(client, -1, "\"%L\" teleported \"%s\" to their aimpoint", client, sTargetName);
@@ -306,25 +303,4 @@ bool TracePlayerAngles(int client, float vecResult[3])
 stock bool TraceEntityFilter_FilterPlayers(int entity, int contentsMask)
 {
 	return entity > MaxClients;
-}
-
-stock void ShowActivity3(int client, const char[] tag, const char[] fmt, any ...)
-{
-	char sFinal[255];
-	char sFormatted[255];
-	char sActivitySource[MAX_NAME_LENGTH];
-
-	FormatActivitySource(client, client, sActivitySource, sizeof(sActivitySource));
-
-	VFormat(sFormatted, sizeof(sFormatted), fmt, 4);
-
-	Format(sFinal, sizeof(sFinal), "%s%s: %s", tag, sActivitySource, sFormatted);
-
-	for (int i = 1; i <= MaxClients; i++)
-	{
-		if (!IsClientInGame(i) || IsFakeClient(i) || i == client)
-			continue;
-
-		PrintToChat(i, sFinal);
-	}
 }
