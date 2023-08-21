@@ -11,7 +11,7 @@ public Plugin myinfo =
 	name 		= "Teleport Commands",
 	author		= "Obus",
 	description	= "Adds commands to teleport clients.",
-	version		= "1.3.2",
+	version		= "1.3.3",
 	url			= "https://github.com/CSSZombieEscape/sm-plugins/blob/master/Teleport/"
 }
 
@@ -47,7 +47,7 @@ public Action Command_Bring(int client, int argc)
 
 	GetCmdArg(1, sArgs, sizeof(sArgs));
 
-	if ((iTargetCount = ProcessTargetString(sArgs, client, iTargets, MAXPLAYERS, COMMAND_FILTER_ALIVE, sTargetName, sizeof(sTargetName), bIsML)) <= 0)
+	if ((iTargetCount = ProcessTargetString(sArgs, client, iTargets, MAXPLAYERS, COMMAND_FILTER_ALIVE | COMMAND_FILTER_NO_IMMUNITY, sTargetName, sizeof(sTargetName), bIsML)) <= 0)
 	{
 		ReplyToTargetError(client, iTargetCount);
 		return Plugin_Handled;
@@ -88,6 +88,9 @@ public Action Command_Goto(int client, int argc)
 
 	int iTarget;
 	char sTarget[32];
+	char sTargetName[MAX_TARGET_LENGTH];
+	int iTargets[MAXPLAYERS];
+	bool bIsML;
 
 	GetCmdArg(1, sTarget, sizeof(sTarget));
 
@@ -96,7 +99,6 @@ public Action Command_Goto(int client, int argc)
 		if (argc > 1)
 		{
 			char sOption[2];
-
 			GetCmdArg(2, sOption, sizeof(sOption));
 
 			if (StringToInt(sOption) <= 0)
@@ -139,17 +141,20 @@ public Action Command_Goto(int client, int argc)
 		}
 	}
 
-	if ((iTarget = FindTarget(client, sTarget)) <= 0)
+	if ((iTarget = ProcessTargetString(sTarget, client, iTargets, MAXPLAYERS, COMMAND_FILTER_ALIVE | COMMAND_FILTER_NO_MULTI | COMMAND_FILTER_NO_IMMUNITY, sTargetName, sizeof(sTargetName), bIsML)) <= 0)
+	{
+		ReplyToTargetError(client, iTarget);
 		return Plugin_Handled;
+	}
 
 	float vecTargetPos[3];
 
-	GetClientAbsOrigin(iTarget, vecTargetPos);
+	GetClientAbsOrigin(iTargets[0], vecTargetPos);
 
 	TeleportEntity(client, vecTargetPos, NULL_VECTOR, NULL_VECTOR);
 
-	CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported to {olive}%N{default}.", iTarget);
-	LogAction(client, iTarget, "\"%L\" teleported to \"%L\"", client, iTarget);
+	CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported to {olive}%s{default}.", sTargetName);
+	LogAction(client, iTargets[0], "\"%L\" teleported to \"%L\"", client, iTargets[0]);
 
 	return Plugin_Handled;
 }
@@ -162,7 +167,6 @@ public Action Command_Send(int client, int argc)
 		return Plugin_Handled;
 	}
 
-	int iTarget;
 	char sArgs[32];
 	char sTarget[32];
 	char sTargetName[MAX_TARGET_LENGTH];
@@ -173,7 +177,7 @@ public Action Command_Send(int client, int argc)
 	GetCmdArg(1, sArgs, sizeof(sArgs));
 	GetCmdArg(2, sTarget, sizeof(sTarget));
 
-	if ((iTargetCount = ProcessTargetString(sArgs, client, iTargets, MAXPLAYERS, COMMAND_FILTER_ALIVE, sTargetName, sizeof(sTargetName), bIsML)) <= 0)
+	if ((iTargetCount = ProcessTargetString(sArgs, client, iTargets, MAXPLAYERS, COMMAND_FILTER_ALIVE | COMMAND_FILTER_NO_IMMUNITY, sTargetName, sizeof(sTargetName), bIsML)) <= 0)
 	{
 		ReplyToTargetError(client, iTargetCount);
 		return Plugin_Handled;
@@ -210,24 +214,32 @@ public Action Command_Send(int client, int argc)
 		return Plugin_Handled;
 	}
 
-	if ((iTarget = FindTarget(client, sTarget)) <= 0)
+	char sTargetName2[MAX_TARGET_LENGTH];
+	int iTargets2[MAXPLAYERS];
+	int iTargetCount2;
+	bool bIsML2;
+
+	if ((iTargetCount2 = ProcessTargetString(sTarget, client, iTargets2, MAXPLAYERS, COMMAND_FILTER_ALIVE | COMMAND_FILTER_NO_MULTI | COMMAND_FILTER_NO_IMMUNITY, sTargetName2, sizeof(sTargetName2), bIsML2)) <= 0)
+	{
+		ReplyToTargetError(client, iTargetCount2);
 		return Plugin_Handled;
+	}
 
 	float vecTargetPos[3];
 
-	GetClientAbsOrigin(iTarget, vecTargetPos);
+	GetClientAbsOrigin(iTargets2[0], vecTargetPos);
 
 	for (int i = 0; i < iTargetCount; i++)
 	{
 		TeleportEntity(iTargets[i], vecTargetPos, NULL_VECTOR, NULL_VECTOR);
 	}
 
-	CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported {olive}%s{default} to {olive}%N{default}.", sTargetName, iTarget);
+	CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported {olive}%s{default} to {olive}%s{default}.", sTargetName, sTargetName2);
 
 	if (iTargetCount > 1)
-		LogAction(client, -1, "\"%L\" teleported target \"%s\" to \"%L\"", client, sTargetName, iTarget);
+		LogAction(client, -1, "\"%L\" teleported \"%s\" to \"%L\"", client, sTargetName, iTargets2[0]);
 	else
-		LogAction(client, iTargets[0], "\"%L\" teleported target \"%L\" to \"%L\"", client, iTargets[0], iTarget);
+		LogAction(client, iTargets[0], "\"%L\" teleported \"%L\" to \"%L\"", client, iTargets[0], iTargets2[0]);
 
 	return Plugin_Handled;
 }
@@ -248,7 +260,7 @@ public Action Command_TpAim(int client, int argc)
 
 	GetCmdArg(1, sArgs, sizeof(sArgs));
 
-	if ((iTargetCount = ProcessTargetString(sArgs, client, iTargets, MAXPLAYERS, COMMAND_FILTER_ALIVE, sTargetName, sizeof(sTargetName), bIsML)) <= 0)
+	if ((iTargetCount = ProcessTargetString(sArgs, client, iTargets, MAXPLAYERS, COMMAND_FILTER_ALIVE | COMMAND_FILTER_NO_IMMUNITY, sTargetName, sizeof(sTargetName), bIsML)) <= 0)
 	{
 		ReplyToTargetError(client, iTargetCount);
 		return Plugin_Handled;
