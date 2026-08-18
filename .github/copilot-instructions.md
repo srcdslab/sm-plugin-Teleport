@@ -16,7 +16,7 @@ The Teleport plugin provides four main admin commands:
 ### Core Technologies
 - **Language**: SourcePawn (SourceMod scripting language)
 - **Platform**: SourceMod 1.11.0+ (latest stable recommended)
-- **Build System**: SourceKnight (modern SourceMod build tool)
+- **Build System**: Native GitHub Actions (spcomp via rumblefrog/setup-sp)
 - **CI/CD**: GitHub Actions with automated building and releases
 
 ### Dependencies
@@ -26,12 +26,10 @@ The Teleport plugin provides four main admin commands:
 
 ### Development Environment Setup
 ```bash
-# Build the plugin using SourceKnight
-# SourceKnight will automatically download dependencies
-cd /path/to/repository
-sourceknight build
-
-# Or use GitHub Actions workflow locally if available
+# Build is handled by GitHub Actions (.github/workflows/ci.yml)
+# It installs SourcePawn compiler via rumblefrog/setup-sp, clones the
+# MultiColors include dependency, and runs spcomp against Teleport.sp.
+# There is no local build tool required; push/PR to trigger CI.
 ```
 
 ## File Structure
@@ -43,14 +41,12 @@ sm-plugin-Teleport/
 │   └── copilot-instructions.md   # This file
 ├── addons/sourcemod/scripting/
 │   └── Teleport.sp              # Main plugin source code
-├── sourceknight.yaml            # Build configuration
 └── .gitignore                   # Git ignore rules
 ```
 
 ### Key Files
 - **`Teleport.sp`**: Main plugin implementation with all teleportation logic
-- **`sourceknight.yaml`**: Build configuration defining dependencies and targets
-- **`.github/workflows/ci.yml`**: Automated build and release pipeline
+- **`.github/workflows/ci.yml`**: Build configuration and automated build/release pipeline
 
 ## SourcePawn Coding Standards
 
@@ -176,7 +172,7 @@ sourceknight build
 
 ### Making Changes
 1. **Edit Source**: Modify `Teleport.sp` using SourcePawn syntax
-2. **Build Locally**: Use `sourceknight build` to compile
+2. **Build**: Push/PR triggers GitHub Actions to compile with spcomp
 3. **Test**: Deploy to test server and verify functionality
 4. **Commit**: Follow conventional commit messages
 5. **CI/CD**: GitHub Actions will build and create releases
@@ -229,7 +225,7 @@ public Action Command_NewCommand(int client, int argc) {
 
 ### Version Updates
 - Update version in plugin info structure
-- Update dependencies in `sourceknight.yaml` if needed
+- Update dependencies in `.github/workflows/ci.yml` if needed
 - Test with latest SourceMod builds
 - Update minimum version requirements in documentation
 
@@ -248,7 +244,7 @@ public Action Command_NewCommand(int client, int argc) {
 ## Troubleshooting
 
 ### Build Issues
-- Ensure SourceKnight is installed and updated
+- Check the GitHub Actions CI logs for spcomp errors
 - Check dependency availability (SourceMod version)
 - Verify MultiColors include is accessible
 - Review build logs for specific error messages
