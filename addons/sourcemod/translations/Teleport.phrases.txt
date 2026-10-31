@@ -1,0 +1,107 @@
+"Phrases"
+{
+	"Bring Usage"
+	{
+		"en"		"Usage: sm_bring <name|#userid>"
+		"fr"		"Utilisation : sm_bring <name|#userid>"
+		"ru"		"Использование: sm_bring <name|#userid>"
+		"es"		"Uso: sm_bring <name|#userid>"
+		"de"		"Verwendung: sm_bring <name|#userid>"
+		"pt"		"Uso: sm_bring <name|#userid>"
+		"chi"		"用法：sm_bring <name|#userid>"
+	}
+	"Goto Usage"
+	{
+		"en"		"Usage: sm_goto <name|#userid|@aim>"
+		"fr"		"Utilisation : sm_goto <name|#userid|@aim>"
+		"ru"		"Использование: sm_goto <name|#userid|@aim>"
+		"es"		"Uso: sm_goto <name|#userid|@aim>"
+		"de"		"Verwendung: sm_goto <name|#userid|@aim>"
+		"pt"		"Uso: sm_goto <name|#userid|@aim>"
+		"chi"		"用法：sm_goto <name|#userid|@aim>"
+	}
+	"Send Usage"
+	{
+		"en"		"Usage: sm_send <name|#userid> <name|#userid>"
+		"fr"		"Utilisation : sm_send <name|#userid> <name|#userid>"
+		"ru"		"Использование: sm_send <name|#userid> <name|#userid>"
+		"es"		"Uso: sm_send <name|#userid> <name|#userid>"
+		"de"		"Verwendung: sm_send <name|#userid> <name|#userid>"
+		"pt"		"Uso: sm_send <name|#userid> <name|#userid>"
+		"chi"		"用法：sm_send <name|#userid> <name|#userid>"
+	}
+	"Send Aim Console"
+	{
+		"en"		"Cannot use \"sm_send @aim\" from server console."
+		"fr"		"Impossible d'utiliser \"sm_send @aim\" depuis la console du serveur."
+		"ru"		"Нельзя использовать \"sm_send @aim\" из консоли сервера."
+		"es"		"No se puede usar \"sm_send @aim\" desde la consola del servidor."
+		"de"		"\"sm_send @aim\" kann nicht über die Serverkonsole verwendet werden."
+		"pt"		"Não é possível usar \"sm_send @aim\" pelo console do servidor."
+		"chi"		"无法在服务器控制台中使用 \"sm_send @aim\"。"
+	}
+	"Aimpoint Trace Failed"
+	{
+		"en"		"Couldn't perform trace to your aimpoint."
+		"fr"		"Impossible de tracer jusqu'à votre point de visée."
+		"ru"		"Не удалось определить точку вашего прицела."
+		"es"		"No se pudo trazar hasta tu punto de mira."
+		"de"		"Dein Zielpunkt konnte nicht ermittelt werden."
+		"pt"		"Não foi possível traçar até o seu ponto de mira."
+		"chi"		"无法追踪到你的准星位置。"
+	}
+	"Brought"
+	{
+		"#format"	"{1:s}"
+		"en"		"{default}Brought {olive}{1}{default}."
+		"fr"		"{default}a ramené {olive}{1}{default} à sa position."
+		"ru"		"{default}переместил {olive}{1}{default} к себе."
+		"es"		"{default}trajo a {olive}{1}{default}."
+		"de"		"{default}hat {olive}{1}{default} zu sich geholt."
+		"pt"		"{default}trouxe {olive}{1}{default}."
+		"chi"		"{default}将 {olive}{1}{default} 传送到了自己身边。"
+	}
+	"Teleported To Aimpoint"
+	{
+		"en"		"{default}Teleported to {olive}their aimpoint{default}."
+		"fr"		"{default}s'est téléporté à {olive}son point de visée{default}."
+		"ru"		"{default}телепортировался в {olive}точку своего прицела{default}."
+		"es"		"{default}se teletransportó a {olive}su punto de mira{default}."
+		"de"		"{default}hat sich zu {olive}seinem Zielpunkt{default} teleportiert."
+		"pt"		"{default}se teleportou para {olive}o seu ponto de mira{default}."
+		"chi"		"{default}传送到了{olive}自己的准星位置{default}。"
+	}
+	"Teleported To Target"
+	{
+		"#format"	"{1:s}"
+		"en"		"{default}Teleported to {olive}{1}{default}."
+		"fr"		"{default}s'est téléporté sur {olive}{1}{default}."
+		"ru"		"{default}телепортировался к {olive}{1}{default}."
+		"es"		"{default}se teletransportó hasta {olive}{1}{default}."
+		"de"		"{default}hat sich zu {olive}{1}{default} teleportiert."
+		"pt"		"{default}se teleportou até {olive}{1}{default}."
+		"chi"		"{default}传送到了 {olive}{1}{default} 身边。"
+	}
+	"Teleported Target To Aimpoint"
+	{
+		"#format"	"{1:s}"
+		"en"		"{default}Teleported {olive}{1}{default} to {olive}their aimpoint{default}."
+		"fr"		"{default}a téléporté {olive}{1}{default} à {olive}son point de visée{default}."
+		"ru"		"{default}телепортировал {olive}{1}{default} в {olive}точку своего прицела{default}."
+		"es"		"{default}teletransportó a {olive}{1}{default} a {olive}su punto de mira{default}."
+		"de"		"{default}hat {olive}{1}{default} zu {olive}seinem Zielpunkt{default} teleportiert."
+		"pt"		"{default}teleportou {olive}{1}{default} para {olive}o seu ponto de mira{default}."
+		"chi"		"{default}将 {olive}{1}{default} 传送到了{olive}自己的准星位置{default}。"
+	}
+	"Teleported Target To Target"
+	{
+		"#format"	"{1:s},{2:s}"
+		"en"		"{default}Teleported {olive}{1}{default} to {olive}{2}{default}."
+		"fr"		"{default}a téléporté {olive}{1}{default} sur {olive}{2}{default}."
+		"ru"		"{default}телепортировал {olive}{1}{default} к {olive}{2}{default}."
+		"es"		"{default}teletransportó a {olive}{1}{default} hasta {olive}{2}{default}."
+		"de"		"{default}hat {olive}{1}{default} zu {olive}{2}{default} teleportiert."
+		"pt"		"{default}teleportou {olive}{1}{default} até {olive}{2}{default}."
+		"chi"		"{default}将 {olive}{1}{default} 传送到了 {olive}{2}{default} 身边。"
+	}
+}

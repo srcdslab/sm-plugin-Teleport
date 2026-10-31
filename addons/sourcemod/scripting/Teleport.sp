@@ -11,13 +11,14 @@ public Plugin myinfo =
 	name 		= "Teleport Commands",
 	author		= "Obus",
 	description	= "Adds commands to teleport clients.",
-	version		= "1.3.4",
+	version		= "1.3.5",
 	url			= "https://github.com/CSSZombieEscape/sm-plugins/blob/master/Teleport/"
 }
 
 public void OnPluginStart()
 {
 	LoadTranslations("common.phrases");
+	LoadTranslations("Teleport.phrases");
 
 	RegAdminCmd("sm_bring", Command_Bring, ADMFLAG_GENERIC, "Brings a client to your position.");
 	RegAdminCmd("sm_goto", Command_Goto, ADMFLAG_GENERIC, "Teleport to a client.");
@@ -29,13 +30,13 @@ public Action Command_Bring(int client, int argc)
 {
 	if (!client)
 	{
-		ReplyToCommand(client, "[SM] Cannot use command from server console.");
+		ReplyToCommand(client, "[SM] %t", "Command is in-game only");
 		return Plugin_Handled;
 	}
 
 	if (argc < 1)
 	{
-		CPrintToChat(client, "{green}[SM] {default}Usage: sm_bring <name|#userid>");
+		CPrintToChat(client, "{green}[SM] {default}%t", "Bring Usage");
 		return Plugin_Handled;
 	}
 
@@ -62,7 +63,7 @@ public Action Command_Bring(int client, int argc)
 		TeleportEntity(iTargets[i], vecClientPos, NULL_VECTOR, NULL_VECTOR);
 	}
 
-	CShowActivity2(client, "{green}[SM] {olive}", "{default}Brought {olive}%s{default}.", sTargetName);
+	CShowActivity2(client, "{green}[SM] {olive}", "%t", "Brought", sTargetName);
 
 	if (iTargetCount > 1)
 		LogAction(client, -1, "\"%L\" brought \"%s\"", client, sTargetName);
@@ -76,13 +77,13 @@ public Action Command_Goto(int client, int argc)
 {
 	if (!client)
 	{
-		ReplyToCommand(client, "[SM] Cannot use command from server console.");
+		ReplyToCommand(client, "[SM] %t", "Command is in-game only");
 		return Plugin_Handled;
 	}
 
 	if (argc < 1)
 	{
-		CPrintToChat(client, "{green}[SM] {default}Usage: sm_goto <name|#userid|@aim>");
+		CPrintToChat(client, "{green}[SM] {default}%t", "Goto Usage");
 		return Plugin_Handled;
 	}
 
@@ -107,13 +108,13 @@ public Action Command_Goto(int client, int argc)
 
 				if (!TracePlayerAngles(client, vecAimPoint))
 				{
-					CPrintToChat(client, "{green}[SM] {default}Couldn't perform trace to your aimpoint.");
+					CPrintToChat(client, "{green}[SM] {default}%t", "Aimpoint Trace Failed");
 					return Plugin_Handled;
 				}
 
 				TeleportEntity(client, vecAimPoint, NULL_VECTOR, NULL_VECTOR);
 
-				CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported to {olive}their aimpoint{default}.");
+				CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported To Aimpoint");
 				LogAction(client, -1, "\"%L\" teleported to their aimpoint", client);
 
 				return Plugin_Handled;
@@ -128,13 +129,13 @@ public Action Command_Goto(int client, int argc)
 
 			if (!TracePlayerAngles(client, vecAimPoint))
 			{
-				CPrintToChat(client, "{green}[SM] {default}Couldn't perform trace to your aimpoint.");
+				CPrintToChat(client, "{green}[SM] {default}%t", "Aimpoint Trace Failed");
 				return Plugin_Handled;
 			}
 
 			TeleportEntity(client, vecAimPoint, NULL_VECTOR, NULL_VECTOR);
 
-			CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported to {olive}their aimpoint{default}.");
+			CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported To Aimpoint");
 			LogAction(client, -1, "\"%L\" teleported to their aimpoint", client);
 
 			return Plugin_Handled;
@@ -153,7 +154,7 @@ public Action Command_Goto(int client, int argc)
 
 	TeleportEntity(client, vecTargetPos, NULL_VECTOR, NULL_VECTOR);
 
-	CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported to {olive}%s{default}.", sTargetName);
+	CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported To Target", sTargetName);
 	LogAction(client, iTargets[0], "\"%L\" teleported to \"%L\"", client, iTargets[0]);
 
 	return Plugin_Handled;
@@ -163,7 +164,7 @@ public Action Command_Send(int client, int argc)
 {
 	if (argc < 2)
 	{
-		CPrintToChat(client, "{green}[SM] {default}Usage: sm_send <name|#userid> <name|#userid>");
+		CPrintToChat(client, "{green}[SM] {default}%t", "Send Usage");
 		return Plugin_Handled;
 	}
 
@@ -187,7 +188,7 @@ public Action Command_Send(int client, int argc)
 	{
 		if (!client)
 		{
-			ReplyToCommand(client, "[SM] Cannot use \"sm_send @aim\" from server console.");
+			ReplyToCommand(client, "[SM] %t", "Send Aim Console");
 			return Plugin_Handled;
 		}
 
@@ -195,7 +196,7 @@ public Action Command_Send(int client, int argc)
 
 		if (!TracePlayerAngles(client, vecAimPoint))
 		{
-			CPrintToChat(client, "{green}[SM] {default}Couldn't perform trace to your aimpoint.");
+			CPrintToChat(client, "{green}[SM] {default}%t", "Aimpoint Trace Failed");
 			return Plugin_Handled;
 		}
 
@@ -204,7 +205,7 @@ public Action Command_Send(int client, int argc)
 			TeleportEntity(iTargets[i], vecAimPoint, NULL_VECTOR, NULL_VECTOR);
 		}
 
-		CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported {olive}%s{default} to {olive}their aimpoint{default}.", sTargetName);
+		CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported Target To Aimpoint", sTargetName);
 
 		if (iTargetCount > 1)
 			LogAction(client, -1, "\"%L\" teleported target \"%s\" to their aimpoint", client, sTargetName);
@@ -234,7 +235,7 @@ public Action Command_Send(int client, int argc)
 		TeleportEntity(iTargets[i], vecTargetPos, NULL_VECTOR, NULL_VECTOR);
 	}
 
-	CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported {olive}%s{default} to {olive}%s{default}.", sTargetName, sTargetName2);
+	CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported Target To Target", sTargetName, sTargetName2);
 
 	if (iTargetCount > 1)
 		LogAction(client, -1, "\"%L\" teleported \"%s\" to \"%L\"", client, sTargetName, iTargets2[0]);
@@ -248,7 +249,7 @@ public Action Command_TpAim(int client, int argc)
 {
 	if (!client)
 	{
-		ReplyToCommand(client, "[SM] Cannot use command from server console.");
+		ReplyToCommand(client, "[SM] %t", "Command is in-game only");
 		return Plugin_Handled;
 	}
 
@@ -275,7 +276,7 @@ public Action Command_TpAim(int client, int argc)
 		TeleportEntity(iTargets[i], vecAimPoint, NULL_VECTOR, NULL_VECTOR);
 	}
 
-	CShowActivity2(client, "{green}[SM] {olive}", "{default}Teleported {olive}%s{default} to {olive}their aimpoint{default}.", sTargetName);
+	CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported Target To Aimpoint", sTargetName);
 
 	if (iTargetCount > 1)
 		LogAction(client, -1, "\"%L\" teleported \"%s\" to their aimpoint", client, sTargetName);
