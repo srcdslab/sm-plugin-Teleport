@@ -52,7 +52,7 @@
 	}
 	"Brought"
 	{
-		"#format"	"{1:s}"
+		"#format"	"{1:t}"
 		"en"		"{default}Brought {olive}{1}{default}."
 		"fr"		"{default}a ramené {olive}{1}{default} à sa position."
 		"ru"		"{default}переместил {olive}{1}{default} к себе."
@@ -73,7 +73,7 @@
 	}
 	"Teleported To Target"
 	{
-		"#format"	"{1:s}"
+		"#format"	"{1:t}"
 		"en"		"{default}Teleported to {olive}{1}{default}."
 		"fr"		"{default}s'est téléporté sur {olive}{1}{default}."
 		"ru"		"{default}телепортировался к {olive}{1}{default}."
@@ -84,7 +84,7 @@
 	}
 	"Teleported Target To Aimpoint"
 	{
-		"#format"	"{1:s}"
+		"#format"	"{1:t}"
 		"en"		"{default}Teleported {olive}{1}{default} to {olive}their aimpoint{default}."
 		"fr"		"{default}a téléporté {olive}{1}{default} à {olive}son point de visée{default}."
 		"ru"		"{default}телепортировал {olive}{1}{default} в {olive}точку своего прицела{default}."
@@ -95,7 +95,7 @@
 	}
 	"Teleported Target To Target"
 	{
-		"#format"	"{1:s},{2:s}"
+		"#format"	"{1:t},{2:t}"
 		"en"		"{default}Teleported {olive}{1}{default} to {olive}{2}{default}."
 		"fr"		"{default}a téléporté {olive}{1}{default} sur {olive}{2}{default}."
 		"ru"		"{default}телепортировал {olive}{1}{default} к {olive}{2}{default}."
