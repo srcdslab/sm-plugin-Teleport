@@ -11,7 +11,7 @@ public Plugin myinfo =
 	name 		= "Teleport Commands",
 	author		= "Obus",
 	description	= "Adds commands to teleport clients.",
-	version		= "1.3.6",
+	version		= "1.3.7",
 	url			= "https://github.com/CSSZombieEscape/sm-plugins/blob/master/Teleport/"
 }
 
@@ -170,7 +170,7 @@ public Action Command_Send(int client, int argc)
 {
 	if (argc < 2)
 	{
-		CPrintToChat(client, "{green}[SM] {default}%t", "Send Usage");
+		CReplyToCommand(client, "{green}[SM] {default}%t", "Send Usage");
 		return Plugin_Handled;
 	}
 
@@ -285,7 +285,11 @@ public Action Command_TpAim(int client, int argc)
 
 	float vecAimPoint[3];
 
-	TracePlayerAngles(client, vecAimPoint);
+	if (!TracePlayerAngles(client, vecAimPoint))
+	{
+		CPrintToChat(client, "{green}[SM] {default}%t", "Aimpoint Trace Failed");
+		return Plugin_Handled;
+	}
 
 	for (int i = 0; i < iTargetCount; i++)
 	{
