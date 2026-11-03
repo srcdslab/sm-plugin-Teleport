@@ -170,7 +170,7 @@ public Action Command_Send(int client, int argc)
 {
 	if (argc < 2)
 	{
-		CReplyToCommand(client, "{green}[SM] {default}%t", "Send Usage");
+		CPrintToChat(client, "{green}[SM] {default}%t", "Send Usage");
 		return Plugin_Handled;
 	}
 
@@ -285,11 +285,7 @@ public Action Command_TpAim(int client, int argc)
 
 	float vecAimPoint[3];
 
-	if (!TracePlayerAngles(client, vecAimPoint))
-	{
-		CPrintToChat(client, "{green}[SM] {default}%t", "Aimpoint Trace Failed");
-		return Plugin_Handled;
-	}
+	TracePlayerAngles(client, vecAimPoint);
 
 	for (int i = 0; i < iTargetCount; i++)
 	{
