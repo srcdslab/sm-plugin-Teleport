@@ -11,7 +11,7 @@ public Plugin myinfo =
 	name 		= "Teleport Commands",
 	author		= "Obus",
 	description	= "Adds commands to teleport clients.",
-	version		= "1.3.5",
+	version		= "1.3.6",
 	url			= "https://github.com/CSSZombieEscape/sm-plugins/blob/master/Teleport/"
 }
 
@@ -63,7 +63,10 @@ public Action Command_Bring(int client, int argc)
 		TeleportEntity(iTargets[i], vecClientPos, NULL_VECTOR, NULL_VECTOR);
 	}
 
-	CShowActivity2(client, "{green}[SM] {olive}", "%t", "Brought", sTargetName);
+	if (bIsML)
+		CShowActivity2(client, "{green}[SM] {olive}", "%t", "Brought", sTargetName);
+	else
+		CShowActivity2(client, "{green}[SM] {olive}", "%t", "Brought", "_s", sTargetName);
 
 	if (iTargetCount > 1)
 		LogAction(client, -1, "\"%L\" brought \"%s\"", client, sTargetName);
@@ -154,7 +157,10 @@ public Action Command_Goto(int client, int argc)
 
 	TeleportEntity(client, vecTargetPos, NULL_VECTOR, NULL_VECTOR);
 
-	CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported To Target", sTargetName);
+	if (bIsML)
+		CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported To Target", sTargetName);
+	else
+		CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported To Target", "_s", sTargetName);
 	LogAction(client, iTargets[0], "\"%L\" teleported to \"%L\"", client, iTargets[0]);
 
 	return Plugin_Handled;
@@ -205,7 +211,10 @@ public Action Command_Send(int client, int argc)
 			TeleportEntity(iTargets[i], vecAimPoint, NULL_VECTOR, NULL_VECTOR);
 		}
 
-		CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported Target To Aimpoint", sTargetName);
+		if (bIsML)
+			CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported Target To Aimpoint", sTargetName);
+		else
+			CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported Target To Aimpoint", "_s", sTargetName);
 
 		if (iTargetCount > 1)
 			LogAction(client, -1, "\"%L\" teleported target \"%s\" to their aimpoint", client, sTargetName);
@@ -235,7 +244,14 @@ public Action Command_Send(int client, int argc)
 		TeleportEntity(iTargets[i], vecTargetPos, NULL_VECTOR, NULL_VECTOR);
 	}
 
-	CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported Target To Target", sTargetName, sTargetName2);
+	if (bIsML && bIsML2)
+		CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported Target To Target", sTargetName, sTargetName2);
+	else if (bIsML)
+		CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported Target To Target", sTargetName, "_s", sTargetName2);
+	else if (bIsML2)
+		CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported Target To Target", "_s", sTargetName, sTargetName2);
+	else
+		CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported Target To Target", "_s", sTargetName, "_s", sTargetName2);
 
 	if (iTargetCount > 1)
 		LogAction(client, -1, "\"%L\" teleported \"%s\" to \"%L\"", client, sTargetName, iTargets2[0]);
@@ -276,7 +292,10 @@ public Action Command_TpAim(int client, int argc)
 		TeleportEntity(iTargets[i], vecAimPoint, NULL_VECTOR, NULL_VECTOR);
 	}
 
-	CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported Target To Aimpoint", sTargetName);
+	if (bIsML)
+		CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported Target To Aimpoint", sTargetName);
+	else
+		CShowActivity2(client, "{green}[SM] {olive}", "%t", "Teleported Target To Aimpoint", "_s", sTargetName);
 
 	if (iTargetCount > 1)
 		LogAction(client, -1, "\"%L\" teleported \"%s\" to their aimpoint", client, sTargetName);
