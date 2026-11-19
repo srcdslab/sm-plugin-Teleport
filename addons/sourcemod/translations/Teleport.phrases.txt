@@ -9,6 +9,12 @@
 		"de"		"Verwendung: sm_bring <name|#userid>"
 		"pt"		"Uso: sm_bring <name|#userid>"
 		"chi"		"用法：sm_bring <name|#userid>"
+		"pl"		"Użycie: sm_bring <name|#userid>"
+		"tr"		"Kullanım: sm_bring <name|#userid>"
+		"it"		"Uso: sm_bring <name|#userid>"
+		"ua"		"Використання: sm_bring <name|#userid>"
+		"zho"		"用法：sm_bring <name|#userid>"
+		"cze"		"Použití: sm_bring <name|#userid>"
 	}
 	"Goto Usage"
 	{
@@ -19,6 +25,12 @@
 		"de"		"Verwendung: sm_goto <name|#userid|@aim>"
 		"pt"		"Uso: sm_goto <name|#userid|@aim>"
 		"chi"		"用法：sm_goto <name|#userid|@aim>"
+		"pl"		"Użycie: sm_goto <name|#userid|@aim>"
+		"tr"		"Kullanım: sm_goto <name|#userid|@aim>"
+		"it"		"Uso: sm_goto <name|#userid|@aim>"
+		"ua"		"Використання: sm_goto <name|#userid|@aim>"
+		"zho"		"用法：sm_goto <name|#userid|@aim>"
+		"cze"		"Použití: sm_goto <name|#userid|@aim>"
 	}
 	"Send Usage"
 	{
@@ -29,6 +41,12 @@
 		"de"		"Verwendung: sm_send <name|#userid> <name|#userid>"
 		"pt"		"Uso: sm_send <name|#userid> <name|#userid>"
 		"chi"		"用法：sm_send <name|#userid> <name|#userid>"
+		"pl"		"Użycie: sm_send <name|#userid> <name|#userid>"
+		"tr"		"Kullanım: sm_send <name|#userid> <name|#userid>"
+		"it"		"Uso: sm_send <name|#userid> <name|#userid>"
+		"ua"		"Використання: sm_send <name|#userid> <name|#userid>"
+		"zho"		"用法：sm_send <name|#userid> <name|#userid>"
+		"cze"		"Použití: sm_send <name|#userid> <name|#userid>"
 	}
 	"Send Aim Console"
 	{
@@ -39,6 +57,12 @@
 		"de"		"\"sm_send @aim\" kann nicht über die Serverkonsole verwendet werden."
 		"pt"		"Não é possível usar \"sm_send @aim\" pelo console do servidor."
 		"chi"		"无法在服务器控制台中使用 \"sm_send @aim\"。"
+		"pl"		"Nie można użyć \"sm_send @aim\" z konsoli serwera."
+		"tr"		"\"sm_send @aim\" sunucu konsolundan kullanılamaz."
+		"it"		"Impossibile usare \"sm_send @aim\" dalla console del server."
+		"ua"		"Неможливо використати \"sm_send @aim\" з консолі сервера."
+		"zho"		"無法從伺服器控制台使用 \"sm_send @aim\"。"
+		"cze"		"Příkaz \"sm_send @aim\" nelze použít z konzole serveru."
 	}
 	"Aimpoint Trace Failed"
 	{
@@ -49,6 +73,12 @@
 		"de"		"Dein Zielpunkt konnte nicht ermittelt werden."
 		"pt"		"Não foi possível traçar até o seu ponto de mira."
 		"chi"		"无法追踪到你的准星位置。"
+		"pl"		"Nie udało się wyznaczyć punktu celowania."
+		"tr"		"Nişan noktana iz sürülemedi."
+		"it"		"Impossibile tracciare fino al tuo punto di mira."
+		"ua"		"Не вдалося визначити вашу точку прицілювання."
+		"zho"		"無法追蹤到你的瞄準點。"
+		"cze"		"Nepodařilo se určit váš zaměřovací bod."
 	}
 	"Brought"
 	{
@@ -60,6 +90,12 @@
 		"de"		"{default}hat {olive}{1}{default} zu sich geholt."
 		"pt"		"{default}trouxe {olive}{1}{default}."
 		"chi"		"{default}将 {olive}{1}{default} 传送到了自己身边。"
+		"pl"		"{default}przyciągnął {olive}{1}{default} do siebie."
+		"tr"		"{default}{olive}{1}{default} oyuncusunu yanına getirdi."
+		"it"		"{default}ha portato da sé {olive}{1}{default}."
+		"ua"		"{default}притягнув до себе {olive}{1}{default}."
+		"zho"		"{default}將 {olive}{1}{default} 帶到了身邊。"
+		"cze"		"{default}přivedl k sobě {olive}{1}{default}."
 	}
 	"Teleported To Aimpoint"
 	{
@@ -70,6 +106,12 @@
 		"de"		"{default}hat sich zu {olive}seinem Zielpunkt{default} teleportiert."
 		"pt"		"{default}se teleportou para {olive}o seu ponto de mira{default}."
 		"chi"		"{default}传送到了{olive}自己的准星位置{default}。"
+		"pl"		"{default}teleportował się do {olive}swojego punktu celowania{default}."
+		"tr"		"{default}{olive}nişan noktasına{default} ışınlandı."
+		"it"		"{default}si è teletrasportato al {olive}suo punto di mira{default}."
+		"ua"		"{default}телепортувався до {olive}своєї точки прицілювання{default}."
+		"zho"		"{default}傳送到了{olive}自己的瞄準點{default}。"
+		"cze"		"{default}se teleportoval na {olive}svůj zaměřovací bod{default}."
 	}
 	"Teleported To Target"
 	{
@@ -81,6 +123,12 @@
 		"de"		"{default}hat sich zu {olive}{1}{default} teleportiert."
 		"pt"		"{default}se teleportou até {olive}{1}{default}."
 		"chi"		"{default}传送到了 {olive}{1}{default} 身边。"
+		"pl"		"{default}teleportował się do {olive}{1}{default}."
+		"tr"		"{default}{olive}{1}{default} oyuncusunun yanına ışınlandı."
+		"it"		"{default}si è teletrasportato da {olive}{1}{default}."
+		"ua"		"{default}телепортувався до {olive}{1}{default}."
+		"zho"		"{default}傳送到了 {olive}{1}{default} 身邊。"
+		"cze"		"{default}se teleportoval k hráči {olive}{1}{default}."
 	}
 	"Teleported Target To Aimpoint"
 	{
@@ -92,6 +140,12 @@
 		"de"		"{default}hat {olive}{1}{default} zu {olive}seinem Zielpunkt{default} teleportiert."
 		"pt"		"{default}teleportou {olive}{1}{default} para {olive}o seu ponto de mira{default}."
 		"chi"		"{default}将 {olive}{1}{default} 传送到了{olive}自己的准星位置{default}。"
+		"pl"		"{default}teleportował {olive}{1}{default} do {olive}swojego punktu celowania{default}."
+		"tr"		"{default}{olive}{1}{default} oyuncusunu {olive}nişan noktasına{default} ışınladı."
+		"it"		"{default}ha teletrasportato {olive}{1}{default} al {olive}suo punto di mira{default}."
+		"ua"		"{default}телепортував {olive}{1}{default} до {olive}своєї точки прицілювання{default}."
+		"zho"		"{default}將 {olive}{1}{default} 傳送到了{olive}自己的瞄準點{default}。"
+		"cze"		"{default}teleportoval hráče {olive}{1}{default} na {olive}svůj zaměřovací bod{default}."
 	}
 	"Teleported Target To Target"
 	{
@@ -103,5 +157,11 @@
 		"de"		"{default}hat {olive}{1}{default} zu {olive}{2}{default} teleportiert."
 		"pt"		"{default}teleportou {olive}{1}{default} até {olive}{2}{default}."
 		"chi"		"{default}将 {olive}{1}{default} 传送到了 {olive}{2}{default} 身边。"
+		"pl"		"{default}teleportował {olive}{1}{default} do {olive}{2}{default}."
+		"tr"		"{default}{olive}{1}{default} oyuncusunu {olive}{2}{default} oyuncusunun yanına ışınladı."
+		"it"		"{default}ha teletrasportato {olive}{1}{default} da {olive}{2}{default}."
+		"ua"		"{default}телепортував {olive}{1}{default} до {olive}{2}{default}."
+		"zho"		"{default}將 {olive}{1}{default} 傳送到了 {olive}{2}{default} 身邊。"
+		"cze"		"{default}teleportoval hráče {olive}{1}{default} k hráči {olive}{2}{default}."
 	}
 }
